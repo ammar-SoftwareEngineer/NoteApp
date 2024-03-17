@@ -1,0 +1,147 @@
+<div class="note-site d-flex gap-md-5 gap-4">
+
+    <nav class="bg-success p-lg-5 p-md-4 p-3 d-flex justify-content-between align-items-center flex-column fixed-top">
+
+        <div class="logo mt-4">
+            <h3 class="text-white d-flex gap-2 align-items-center"><i class="fa-solid fa-note-sticky text-warning"></i>
+                <span class="d-none d-md-block">Note
+                    App</span>
+            </h3>
+        </div>
+        <button type="button" class="btn btn-warning d-md-inline-block d-flex justify-content-center  py-2 btn-add"
+            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class="fas fa-plus-circle me-lg-2 "></i> <span class="d-none d-lg-inline-block">Add Note</span>
+
+        </button>
+        <div class="logout">
+            <a class="  text-decoration-none text-white d-flex gap-2 align-items-center" (click)="logOut()"><i
+                    class="fas fa-sign-out"></i>
+                <span class="d-none d-md-block"> LogOut</span> </a>
+        </div>
+    </nav>
+
+
+    <section class=" py-5 ">
+        <div class="container">
+            <div class="search mb-4 d-flex w-100 align-items-center">
+                <input type="text" class="form-control rounded-end-0  py-2" [(ngModel)]="searchKey"
+                    placeholder="Search Notes">
+                <button class="btn btn-primary rounded-start-0 py-2"><i class="fas fa-search"></i></button>
+            </div>
+
+            <!-- Button trigger modal -->
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Note</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="noteForm" (ngSubmit)="addNoteData()">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" formControlName="title" id="title">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="content" class="form-label">Content</label>
+                                    <textarea class="form-control" id="content" formControlName="content"
+                                        rows="3"></textarea>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button class="btn btn-success">submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- notes -->
+            <div class="notes pb-5 ">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-4" *ngFor="let item of noteData |search:searchKey">
+                        <div class="note shadow  p-3  border-warning  position-relative overflow-hidden">
+                            <div class="header-note d-flex justify-content-between align-items-center">
+                                <div class="title-note d-flex justify-content-between">
+                                    <h2 class="fs-4 text-primary-emphasis">
+                                        {{item.title}}
+                                    </h2>
+                                </div>
+                                <div class="dot">
+                                    <i class="fas fa-ellipsis fs-4" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                    <ul class="dropdown-menu ">
+                                        <li><a class="dropdown-item text-success " (click)="getNoteId(item._id) "
+                                                data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
+                                        </li>
+                                        <li><a class="dropdown-item text-danger"
+                                                (click)="deleteNoteData(item._id)">delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="content-note mb-5">
+                                <p class="fs-5 card-text text-dark-emphasis overflow-hidden content">
+                                    {{item.content}}
+                                </p>
+                            </div>
+                            <p class="time">
+                                {{item.createdAt|slice:0:10}}
+                            </p>
+                            <div class="trangle position-absolute bottom-0 end-0 bg-body-secondary"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModalLabel">Edit Note</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="noteForm" (ngSubmit)="updateNoteData()">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="title" formControlName="title">
+
+                                </div>
+
+                                <div class=" mb-3">
+                                    <label for="content" class="form-label">Content</label>
+                                    <textarea class="form-control" id="content" formControlName="content"
+                                        rows="3"></textarea>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button class="btn btn-success">Update</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,107 @@
+<section class=" py-5">
+    <div class="container shadow-lg p-4 rounded-4 mt-lg-0 mt-5 mb-lg-0 mb-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="image">
+                    <img class="w-100" src="./assets/images/Mobile note list.gif" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="text-center mb-5 fw-medium">Register</h1>
+                <form [formGroup]="signUpForm" (ngSubmit)="getDataSign()">
+                    <div class="mb-4">
+                        <label for="name" class="form-label">Name</label>
+                        <input #inputName type="text" class="form-control" formControlName="name" id="name">
+
+                        <div class="error-msg"
+                            *ngIf="signUpForm.get('name')?.errors&&(signUpForm.get('name')?.touched||inputName.value.length>0)">
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('name')?.getError('required')">Name is
+                                Required
+                            </p>
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('name')?.getError('minlength')">Name is
+                                Minlength at least 3 char
+                            </p>
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('name')?.getError('maxlength')">Name is
+                                Maxlength is 10 char
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input #inputEmail type="email" class="form-control" formControlName="email" id="email">
+
+                        <div class="error-msg"
+                            *ngIf="signUpForm.get('email')?.errors&&(signUpForm.get('email')?.touched||inputEmail.value.length>0)">
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('email')?.getError('required')">Email is
+                                Required
+                            </p>
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('email')?.getError('email')">Email is
+                                Valid
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input #inputPassword type="password" class="form-control" formControlName="password"
+                            id="password">
+
+                        <div class="error-msg"
+                            *ngIf="signUpForm.get('password')?.errors&&(signUpForm.get('password')?.touched||inputPassword.value.length>0)">
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('password')?.getError('required')">Password
+                                Required
+                            </p>
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('password')?.getError('pattern')">Password is
+                                Valid
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="age" class="form-label">Age</label>
+                        <input #inputAge type="age" class="form-control" formControlName="age" id="age">
+
+                        <div class="error-msg"
+                            *ngIf="signUpForm.get('age')?.errors&&(signUpForm.get('age')?.touched||inputAge.value.length>0)">
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('age')?.getError('required')">Age
+                                Required
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input #inputPhone type="phone" class="form-control" formControlName="phone" id="phone">
+
+                        <div class="error-msg"
+                            *ngIf="signUpForm.get('phone')?.errors&&(signUpForm.get('phone')?.touched||inputPhone.value.length>0)">
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('phone')?.getError('required')">Phone
+                                Required
+                            </p>
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signUpForm.get('phone')?.getError('pattern')">Phone is
+                                Valid
+                            </p>
+                        </div>
+                    </div>
+                    <div class="btn-submit ">
+                        <button class="btn btn-success">register</button>
+                    </div>
+                    <p *ngIf="msgError" class="alert alert-danger text-danger mt-4 text-center">{{msgError}}</p>
+                    <div class="link-register d-flex mt-5 gap-2">
+                        <p>If you have an account ?</p>
+                        <a class="text-primary text-decoration-none fw-medium" routerLink="/login">Login</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>

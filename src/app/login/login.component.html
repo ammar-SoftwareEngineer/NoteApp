@@ -1,0 +1,58 @@
+<section class="py-5">
+    <div class="container shadow-lg p-4 rounded-4 mt-5">
+        <div class="row align-items-center ">
+            <div class="col-lg-6 order-lg-0 order-2 ">
+                <h1 class="text-center mb-5 fw-medium">Login</h1>
+                <form [formGroup]="signInForm" (ngSubmit)="getDataLogin()">
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input #inputEmail type="email" class="form-control" formControlName="email" id="email">
+
+                        <div class="error-msg"
+                            *ngIf="signInForm.get('email')?.errors&&(signInForm.get('email')?.touched||inputEmail.value.length>0)">
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signInForm.get('email')?.getError('required')">Email is
+                                Required
+                            </p>
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signInForm.get('email')?.getError('email')">Email is
+                                Valid
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input #inputPassword type="password" class="form-control" formControlName="password"
+                            id="password">
+
+                        <div class="error-msg"
+                            *ngIf="signInForm.get('password')?.errors&&(signInForm.get('password')?.touched||inputPassword.value.length>0)">
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signInForm.get('password')?.getError('required')">Password
+                                Required
+                            </p>
+                            <p class="alert alert-danger text-danger"
+                                *ngIf="signInForm.get('password')?.getError('pattern')">Password is
+                                Valid
+                            </p>
+                        </div>
+                    </div>
+                    <div class="btn-submit ">
+                        <button class="btn btn-success">Login</button>
+                    </div>
+                    <p *ngIf="msgError" class="alert alert-danger text-danger mt-4 text-center">{{msgError}}</p>
+                    <div class="link-login d-flex mt-5 gap-2">
+                        <p>If you do not have an account ?</p>
+                        <a class="text-primary text-decoration-none fw-medium" routerLink="/register">register</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6">
+                <div class="image">
+                    <img class="w-100" src="./assets/images/Mobile note list.gif" alt="">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

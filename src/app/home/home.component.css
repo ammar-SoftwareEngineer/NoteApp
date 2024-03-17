@@ -1,0 +1,89 @@
+section {
+    height: 100vh;
+    width: 100%;
+    margin-left: 150px;
+}
+
+.dot i {
+    cursor: pointer;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.note {
+    border-style: solid;
+    border-width: 10px 0 0 0;
+    position: relative;
+    border-radius: 6px 6px 40px 6px;
+    height: 185px;
+}
+
+.trangle {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px 0 40px 0;
+}
+
+@media(max-width:768px) {
+    section {
+        width: 85%;
+        margin-left: 55px;
+    }
+
+
+}
+
+
+a {
+    cursor: pointer;
+}
+
+
+
+
+
+@media(min-width:992px) {
+    nav {
+        height: 100vh;
+        width: 250px;
+    }
+
+    a {
+        font-size: 18px;
+    }
+}
+
+@media(max-width:991px) {
+    h3 {
+        font-size: 18px;
+    }
+
+    a {
+        font-size: 16px;
+    }
+
+    nav {
+        height: 100vh;
+        width: 160px;
+    }
+}
+
+@media(max-width:768px) {
+    h3 {
+        font-size: 18px;
+    }
+
+
+
+    a {
+        font-size: 16px;
+    }
+
+    nav {
+        height: 100vh;
+        width: 50px;
+    }
+
+}
