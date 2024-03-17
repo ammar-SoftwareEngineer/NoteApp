@@ -9,10 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { authGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', canActivate: [authGuard], component: HomeComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'home',
+    canActivate: [authGuard],
+    component: HomeComponent,
+    title: 'Home',
+  },
+  { path: 'register', component: RegisterComponent, title: 'Register' },
+  { path: 'login', component: LoginComponent, title: 'Login' },
   { path: '**', component: NotFoundComponent, title: 'NotFound' },
 ];
 
