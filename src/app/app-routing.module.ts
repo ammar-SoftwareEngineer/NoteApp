@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { authGuard } from './auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
     canActivate: [authGuard],
