@@ -53,22 +53,14 @@ export class HomeComponent implements OnInit {
 
   getNoteId(id: string): void {
     this.noteId = id;
-    this.updateFormValues();
   }
 
-  updateFormValues() {
-    this.noteForm.patchValue({
-      title: this.data?.title,
-      content: this.data?.content,
-    });
-  }
   updateNoteData(): void {
     this._NoteService.updateNote(this.noteForm.value, this.noteId).subscribe({
       next: (response) => {
         this.data = response.note;
-        this.updateFormValues();
 
-        // this.ngOnInit();
+        this.ngOnInit();
       },
     });
   }
