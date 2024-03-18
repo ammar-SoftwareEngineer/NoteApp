@@ -20,6 +20,13 @@ section {
     height: 185px;
 }
 
+.note .content-note p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .trangle {
     width: 40px;
     height: 40px;

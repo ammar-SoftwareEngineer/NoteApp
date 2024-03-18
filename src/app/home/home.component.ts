@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NoteService } from '../services/note.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -13,24 +13,27 @@ export class HomeComponent implements OnInit {
   constructor(
     private _NoteService: NoteService,
     private _FormBuilder: FormBuilder,
-    private _UserService: UserService
+    private _UserService: UserService,
+    private _ActivatedRoute: ActivatedRoute
   ) {}
 
   title: string = '';
   content: string = '';
-  noteData: any = '';
+  noteData: any;
   searchKey: string = '';
-  noteId: string = '';
-  data: any = '';
-
+  noteId: any;
+  noteIdDetails: any;
+  data: any;
+  titleEdit = [];
+  dataDetails: any;
   logOut(): void {
     this._UserService.signOut();
   }
+
   noteForm: FormGroup = this._FormBuilder.group({
     title: [''],
     content: [''],
   });
-
   ngOnInit(): void {
     this._NoteService.getUserNote().subscribe({
       next: (response) => {
@@ -51,15 +54,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getNoteId(id: string): void {
-    this.noteId = id;
-  }
-
-  updateNoteData(): void {
-    this._NoteService.updateNote(this.noteForm.value, this.noteId).subscribe({
+  updateNoteData(noteId: string): void {
+    this._NoteService.updateNote(this.noteForm.value, noteId).subscribe({
       next: (response) => {
         this.data = response.note;
-
         this.ngOnInit();
       },
     });
@@ -68,7 +66,6 @@ export class HomeComponent implements OnInit {
   deleteNoteData(id: string) {
     this._NoteService.deleteNote(id).subscribe({
       next: (response) => {
-        console.log(response);
         this.ngOnInit();
       },
     });
