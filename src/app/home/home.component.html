@@ -45,7 +45,7 @@
             </div>
 
             <!-- notes -->
-            <div class="notes pb-5">
+            <div class="notes pb-5" >
               <div class="row gy-4">
                 <div
                   class="col-lg-4 col-md-4"
@@ -161,7 +161,7 @@
             >
               Close
             </button>
-            <button class="btn btn-warning">Edit Note</button>
+            <button class="btn btn-warning" data-bs-dismiss="modal">Edit Note</button>
           </div>
         </form>
       </div>
@@ -169,7 +169,7 @@
   </div>
 </div>
 <!-- Modal Add Task-->
-<div
+<div  
   class="modal fade"
   id="exampleModal"
   tabindex="-1"
@@ -215,10 +215,13 @@
             >
               Close
             </button>
-            <button class="btn btn-success">Add Note</button>
+            <button class="btn btn-success" data-bs-dismiss="modal">Add Note</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+<!-- <ng-template #errorMsg>
+  <h1 class="bg-white w-50 mx-auto p-5 text-center rounded-4">{{ msg }}</h1>
+</ng-template> -->
