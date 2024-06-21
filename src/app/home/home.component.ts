@@ -1,8 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { NoteService } from '../services/note.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,8 @@ export class HomeComponent implements OnInit {
     private _NoteService: NoteService,
     private _FormBuilder: FormBuilder,
     private _UserService: UserService,
-    private _ActivatedRoute: ActivatedRoute
-  ) {}
-
+    private _ActivatedRoute: ActivatedRoute,
+  ) { }
   title: string = '';
   content: string = '';
   noteData: any;
@@ -24,8 +24,9 @@ export class HomeComponent implements OnInit {
   noteId: any;
   noteIdDetails: any;
   data: any;
-  titleEdit = [];
   dataDetails: any;
+  closeModal: boolean = false
+
   logOut(): void {
     this._UserService.signOut();
   }
@@ -48,18 +49,37 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         this.title = response.note.title;
         this.content = response.note.content;
-
+        this.noteForm.reset({
+          title: '',
+          content: ''
+        });
         this.ngOnInit();
       },
     });
+
   }
 
   updateNoteData(noteId: string): void {
     this._NoteService.updateNote(this.noteForm.value, noteId).subscribe({
       next: (response) => {
         this.data = response.note;
+        if (this.noteForm.value.title !== "" && this.noteForm.value.content !== "") {
+        this.clearData()
+        } else {
+          this.noteForm.patchValue({
+            title: this.data.title,
+            content: this.data.content
+          });
+        }
         this.ngOnInit();
       },
+    });
+  }
+
+  clearData():void{
+    this.noteForm.reset({
+      title: "",
+      content: ""
     });
   }
 
