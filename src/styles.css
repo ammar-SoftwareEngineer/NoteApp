@@ -7,9 +7,7 @@ body {
   overflow-x: hidden;
 }
 body {
-  background-image: url("./assets/images/notebook-with-pencil-top.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }

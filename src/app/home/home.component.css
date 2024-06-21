@@ -1,4 +1,10 @@
 .note-site{
+    background-image: url("../../assets/images/notebook-with-pencil-top.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.content-site{
     background-color: rgba(0, 0, 0, 0.425);
 }
 
